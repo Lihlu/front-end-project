@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       process.env.NEXT_PUBLIC_CURRENT_USER_ENDPOINT;
 
     try {
-      debugger;
       const response = await axios.post(loginEndpoint, {
         email: loginData.email,
         password: loginData.password,
