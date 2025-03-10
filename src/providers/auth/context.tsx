@@ -37,6 +37,16 @@ export interface IRegistrationData {
   policiesAccepted: boolean;
 }
 
+export interface IClientRegistrationData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  dateOfBirth: string;
+  contactNumber: string;
+  policiesAccepted: boolean;
+}
+
 export interface IAuthStateContext {
   isPending: boolean;
   isSuccess: boolean;
@@ -48,6 +58,7 @@ export interface IAuthStateContext {
 export interface IAuthActionContext {
   loginUser: (loginData: ILoginData) => void;
   registerTrainer: (registrationData: IRegistrationData) => void;
+  registerClient: (clientRegistrationData: IClientRegistrationData) => void;
 }
 
 export const INITIAL_STATE: IAuthStateContext = {
