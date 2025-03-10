@@ -29,6 +29,20 @@ export const AuthReducer = handleActions<IAuthStateContext, IAuthStateContext>(
     [AuthActionEnums.registerTrainerError]: (state, action) =>({
       ...state,
       ...action.payload
+    }),
+
+    // Handling client registration actions
+    [AuthActionEnums.registerClientPending]: (state, action) =>({
+      ...state,
+      ...action.payload
+    }),
+    [AuthActionEnums.registerClientSuccess]: (state, action) =>({
+      ...state,
+      ...action.payload
+    }),
+    [AuthActionEnums.registerClientError]: (state, action) =>({
+      ...state,
+      ...action.payload
     })
 
   },
