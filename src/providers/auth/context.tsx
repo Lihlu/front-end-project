@@ -19,9 +19,22 @@ export interface IUser {
 }
 
 // Interface defining the structure of the object used to login
-export interface LoginData {
+export interface ILoginData {
   email: string;
   password: string;
+}
+
+export interface IRegistrationData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  role: string;
+  contactNumber: string;
+  planType: string;
+  activeState: boolean;
+  trial: boolean;
+  policiesAccepted: boolean;
 }
 
 export interface IAuthStateContext {
@@ -33,7 +46,8 @@ export interface IAuthStateContext {
 }
 
 export interface IAuthActionContext {
-  loginUser: (loginData: LoginData) => void;
+  loginUser: (loginData: ILoginData) => void;
+  registerTrainer: (registrationData: IRegistrationData) => void;
 }
 
 export const INITIAL_STATE: IAuthStateContext = {
