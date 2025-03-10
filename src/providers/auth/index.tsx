@@ -9,6 +9,7 @@ import {
   AuthStateContext,
   ILoginData,
   IRegistrationData,
+  IClientRegistrationData,
 } from "./context";
 import {
   loginUserPending,
@@ -17,6 +18,9 @@ import {
   registerTrainerPending,
   registerTrainerSuccess,
   registerTrainerError,
+  registerClientPending,
+  registerClientSuccess,
+  registerClientError,
 } from "./actions";
 import axios from "axios";
 
@@ -53,14 +57,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Handling user registration
+  // Handling trainer registration
   const registerTrainer = async (registrationData: IRegistrationData) => {
     dispatch(registerTrainerPending());
 
-    const registerEndpoint: string = process.env.NEXT_PUBLIC_REGISTER_TRAINER_ENDPOINT;
-  
+    const registerTrainerEndpoint: string =
+      process.env.NEXT_PUBLIC_REGISTER_TRAINER_ENDPOINT;
+
     try {
-      const response = await axios.post(registerEndpoint,registrationData);
+      const response = await axios.post(registerTrainerEndpoint, registrationData);
       debugger;
       console.log(response.data);
 
@@ -72,9 +77,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  //Handling client registration
+  const registerClient = async (
+    clientRegistrationData: IClientRegistrationData
+  ) => {
+    dispatch(registerClientPending());
+
+    const registerClientEndpoint = process.env.NEXT_PUBLIC_REGISTER_CLIENT_ENDPOINT;
+
+    try {
+      const response = await axios.post(registerClientEndpoint, clientRegistrationData);
+
+      console.log(response);
+
+      dispatch(registerClientSuccess());
+    } catch (error){
+      console.error(error);
+
+      dispatch(registerClientError());
+
+    }
+  };
+
   return (
     <AuthStateContext.Provider value={state}>
-      <AuthActionContext.Provider value={{ loginUser, registerTrainer }}>
+      <AuthActionContext.Provider
+        value={{ loginUser, registerTrainer, registerClient }}
+      >
         {children}
       </AuthActionContext.Provider>
     </AuthStateContext.Provider>

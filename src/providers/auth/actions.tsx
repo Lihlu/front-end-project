@@ -9,6 +9,10 @@ export enum AuthActionEnums {
   registerTrainerPending = "REGISTER_TRAINER_PENDING",
   registerTrainerSuccess = "REGISTER_TRAINER_SUCCESS",
   registerTrainerError = "REGISTER_TRAINER_ERROR",
+
+  registerClientPending = "REGISTER_CLIENT_PENDING",
+  registerClientSuccess = "REGISTER_CLIENT_SUCCESS",
+  registerClientError = "REGISTER_CLIENT_ERROR",
 }
 
 // Creating actions for login statuses
@@ -25,17 +29,30 @@ export const loginUserError = createAction<IAuthStateContext>(
   () => ({ isPending: false, isSuccess: false, isError: true })
 );
 
-// Creating actions for registration statuses
+// Creating actions for trainer registration statuses
 export const registerTrainerPending = createAction<IAuthStateContext>(
-  AuthActionEnums.loginUserPending,
+  AuthActionEnums.registerTrainerPending,
   () => ({ isPending: true, isSuccess: false, isError: false })
 );
 export const registerTrainerSuccess = createAction<IAuthStateContext, IUser>(
-  AuthActionEnums.loginUserSuccess,
+  AuthActionEnums.registerTrainerSuccess,
   () => ({ isPending: false, isSuccess: true, isError: false })
 );
 export const registerTrainerError = createAction<IAuthStateContext>(
-  AuthActionEnums.loginUserError,
+  AuthActionEnums.registerTrainerError,
   () => ({ isPending: false, isSuccess: false, isError: true })
 );
 
+// Creating actions for client registration statuses
+export const registerClientPending = createAction<IAuthStateContext>(
+  AuthActionEnums.registerClientPending,
+  () => ({ isPending: true, isSuccess: false, isError: false })
+);
+export const registerClientSuccess = createAction<IAuthStateContext, IUser>(
+  AuthActionEnums.registerClientSuccess,
+  () => ({ isPending: false, isSuccess: true, isError: false })
+);
+export const registerClientError = createAction<IAuthStateContext>(
+  AuthActionEnums.registerClientError,
+  () => ({ isPending: false, isSuccess: false, isError: true })
+);
