@@ -7,6 +7,7 @@ export const FoodItemReducer = handleActions<
   IFoodItemStateContext
 >(
   {
+    // Handling get all actions
     [FoodItemActionEnums.getAllFoodItemsPending]: (state, action) => ({
       ...state,
       ...action.payload,
@@ -16,6 +17,20 @@ export const FoodItemReducer = handleActions<
       ...action.payload,
     }),
     [FoodItemActionEnums.getAllFoodItemsError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
+    // Handling get by category actions
+    [FoodItemActionEnums.getFoodItemsByCategoryPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [FoodItemActionEnums.getFoodItemsByCategorySuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [FoodItemActionEnums.getFoodItemsByCategoryError]: (state, action) => ({
       ...state,
       ...action.payload,
     }),

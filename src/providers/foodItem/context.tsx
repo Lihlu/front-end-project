@@ -29,6 +29,7 @@ export interface IFoodItemStateContext {
 
 export interface IFoodItemActionContext {
     getAllFoodItems: (token: string) => void;
+    getFoodItemsByCategory: (token: string, category: string) => void;
 }
 
 export const INITIAL_STATE: IFoodItemStateContext = {
