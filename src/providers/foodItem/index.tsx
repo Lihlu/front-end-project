@@ -6,9 +6,13 @@ import {
   FoodItemActionContext,
   FoodItemStateContext,
   IFoodItem,
+  IFoodItemInput,
   INITIAL_STATE,
 } from "./context";
 import {
+  createFoodItemError,
+  createFoodItemPending,
+  createFoodItemSuccess,
   getAllFoodItemsError,
   getAllFoodItemsPending,
   getAllFoodItemsSuccess,
@@ -59,11 +63,14 @@ export const FoodItemProvider = ({
       process.env.NEXT_PUBLIC_GET_FOOD_ITEMS_BY_CATEGORY_ENDPOINT;
 
     try {
-      const response = await axios.get(`${getFoodItemsByCategoryEndpoint}${category}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
+      const response = await axios.get(
+        `${getFoodItemsByCategoryEndpoint}${category}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
       const foodItems: IFoodItem[] = response.data.data;
 
@@ -75,31 +82,65 @@ export const FoodItemProvider = ({
   };
 
   //Getting food items by search term
-  const getFoodItemsBySearch = async (token: string, searchTerm: string) =>{
+  const getFoodItemsBySearch = async (token: string, searchTerm: string) => {
     dispatch(getFoodItemsBySearchPending());
 
-    const getFoodItemsBySearchEndpoint = process.env.NEXT_PUBLIC_GET_FOOD_ITEMS_BY_SEARCH_ENDPOINT;
+    const getFoodItemsBySearchEndpoint =
+      process.env.NEXT_PUBLIC_GET_FOOD_ITEMS_BY_SEARCH_ENDPOINT;
 
     try {
-      const response = await axios.get(`${getFoodItemsBySearchEndpoint}${searchTerm}`, {
+      const response = await axios.get(
+        `${getFoodItemsBySearchEndpoint}${searchTerm}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const foodItems: IFoodItem[] = response.data.data;
+
+      dispatch(getFoodItemsBySearchSuccess(foodItems));
+    } catch (error) {
+      console.error(error);
+      dispatch(getFoodItemsBySearchError());
+    }
+  };
+
+  // Creating a food item
+  const createFoodItem = async (
+    token: string,
+    foodItemInput: IFoodItemInput
+  ) => {
+    dispatch(createFoodItemPending());
+
+    const createFoodItemEndpoint: string =
+      process.env.NEXT_PUBLIC_CREATE_FOOD_ITEM_ENDPOINT;
+
+    try {
+      await axios.post(createFoodItemEndpoint, foodItemInput, {
         headers: {
           Authorization: token,
         },
       });
 
-      const foodItems: IFoodItem[] = response.data.data;
-
-      dispatch(getFoodItemsBySearchSuccess(foodItems));
-
-    } catch (error){
+      dispatch(createFoodItemSuccess());
+    } catch (error) {
       console.error(error);
-      dispatch(getFoodItemsBySearchError());
+      dispatch(createFoodItemError());
     }
-  }
+  };
 
   return (
     <FoodItemStateContext.Provider value={state}>
-      <FoodItemActionContext.Provider value={{ getAllFoodItems, getFoodItemsByCategory, getFoodItemsBySearch }}>
+      <FoodItemActionContext.Provider
+        value={{
+          getAllFoodItems,
+          getFoodItemsByCategory,
+          getFoodItemsBySearch,
+          createFoodItem,
+        }}
+      >
         {children}
       </FoodItemActionContext.Provider>
     </FoodItemStateContext.Provider>
