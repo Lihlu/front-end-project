@@ -48,6 +48,20 @@ export const FoodItemReducer = handleActions<
       ...state,
       ...action,
     }),
+
+    // Handling create food item actions
+    [FoodItemActionEnums.createFoodItemPending]: (state, action) => ({
+      ...state,
+      ...action,
+    }),
+    [FoodItemActionEnums.createFoodItemSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [FoodItemActionEnums.createFoodItemError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
   },
   INITIAL_STATE
 );
