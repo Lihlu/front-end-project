@@ -15,6 +15,9 @@ import {
   getFoodItemsByCategoryError,
   getFoodItemsByCategoryPending,
   getFoodItemsByCategorySuccess,
+  getFoodItemsBySearchError,
+  getFoodItemsBySearchPending,
+  getFoodItemsBySearchSuccess,
 } from "./actions";
 import axios from "axios";
 
@@ -48,6 +51,7 @@ export const FoodItemProvider = ({
     }
   };
 
+  // Getting food items by category
   const getFoodItemsByCategory = async (token: string, category: string) => {
     dispatch(getFoodItemsByCategoryPending());
 
@@ -70,9 +74,32 @@ export const FoodItemProvider = ({
     }
   };
 
+  //Getting food items by search term
+  const getFoodItemsBySearch = async (token: string, searchTerm: string) =>{
+    dispatch(getFoodItemsBySearchPending());
+
+    const getFoodItemsBySearchEndpoint = process.env.NEXT_PUBLIC_GET_FOOD_ITEMS_BY_SEARCH_ENDPOINT;
+
+    try {
+      const response = await axios.get(`${getFoodItemsBySearchEndpoint}${searchTerm}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const foodItems: IFoodItem[] = response.data.data;
+
+      dispatch(getFoodItemsBySearchSuccess(foodItems));
+
+    } catch (error){
+      console.error(error);
+      dispatch(getFoodItemsBySearchError());
+    }
+  }
+
   return (
     <FoodItemStateContext.Provider value={state}>
-      <FoodItemActionContext.Provider value={{ getAllFoodItems, getFoodItemsByCategory }}>
+      <FoodItemActionContext.Provider value={{ getAllFoodItems, getFoodItemsByCategory, getFoodItemsBySearch }}>
         {children}
       </FoodItemActionContext.Provider>
     </FoodItemStateContext.Provider>
