@@ -34,6 +34,20 @@ export const FoodItemReducer = handleActions<
       ...state,
       ...action.payload,
     }),
+
+    // Handling get by search actions
+    [FoodItemActionEnums.getFoodItemsBySearchPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [FoodItemActionEnums.getFoodItemsBySearchSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [FoodItemActionEnums.getFoodItemsBySearchError]: (state, action) => ({
+      ...state,
+      ...action,
+    }),
   },
   INITIAL_STATE
 );
