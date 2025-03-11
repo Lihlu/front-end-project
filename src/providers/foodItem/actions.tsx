@@ -13,6 +13,10 @@ export enum FoodItemActionEnums {
   getFoodItemsBySearchPending = "GET_FOOD_ITEMS_BY_SEARCH_PENDING",
   getFoodItemsBySearchSuccess = "GET_FOOD_ITEMS_BY_SEARCH_SUCCESS",
   getFoodItemsBySearchError = "GET_FOOD_ITEMS_BY_SEARCH_ERROR",
+
+  createFoodItemPending = "CREATE_FOOD_ITEM_PENDING",
+  createFoodItemSuccess = "CREATE_FOOD_ITEM_SUCCESS",
+  createFoodItemError = "CREATE_FOOD_ITEM_ERROR",
 }
 
 export const getAllFoodItemsPending = createAction<IFoodItemStateContext>(
@@ -74,5 +78,20 @@ export const getFoodItemsBySearchSuccess = createAction<
 
 export const getFoodItemsBySearchError = createAction<IFoodItemStateContext>(
   FoodItemActionEnums.getFoodItemsBySearchError,
+  () => ({ isPending: false, isSuccess: false, isError: true })
+);
+
+export const createFoodItemPending = createAction<IFoodItemStateContext>(
+  FoodItemActionEnums.createFoodItemPending,
+  () => ({ isPending: true, isSuccess: false, isError: false })
+);
+
+export const createFoodItemSuccess = createAction<IFoodItemStateContext>(
+  FoodItemActionEnums.createFoodItemSuccess,
+  () => ({ isPending: false, isSuccess: true, isError: false })
+);
+
+export const createFoodItemError = createAction<IFoodItemStateContext>(
+  FoodItemActionEnums.createFoodItemError,
   () => ({ isPending: false, isSuccess: false, isError: true })
 );
