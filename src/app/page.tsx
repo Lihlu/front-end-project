@@ -27,7 +27,7 @@ const LandingPage: React.FC = () => {
           <div className={styles.trainerFeatures}>
             <Title level={3}>For Trainers</Title>
             <Text>
-              Create, manage, and customize your clients' meal plans with ease.
+              Create, manage, and customize your clients&apos; meal plans with ease.
               You can also track food items and ensure your clients are
               following the best nutrition plan tailored to their needs.
             </Text>
