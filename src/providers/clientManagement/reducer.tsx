@@ -19,6 +19,19 @@ export const ClientManagementReducer = handleActions<
       ...state,
       ...action.payload,
     }),
+
+    [ClientManagementEnums.createClientPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [ClientManagementEnums.createClientSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [ClientManagementEnums.createClientError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
   },
   INITIAL_STATE
 );
