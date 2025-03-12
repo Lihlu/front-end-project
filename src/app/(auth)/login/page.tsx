@@ -15,6 +15,7 @@ const LoginForm: React.FC = () => {
   const { isSuccess } = useAuthState();
   const { loginUser } = useAuthActions();
   const router = useRouter();
+  const {user} = useAuthState();
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values: ILoginData) => {
     console.log("Success:", values);
@@ -28,8 +29,13 @@ const LoginForm: React.FC = () => {
     console.log("Failed:", errorInfo);
   };
 
+  
   if (isSuccess) {
-    router.push("/trainer");
+    if (user.role === "admin"){
+      router.push("/trainer");
+    }else {
+      router.push("/client");
+    }
   }
 
   return (
