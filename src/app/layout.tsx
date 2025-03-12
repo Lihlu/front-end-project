@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from "@/providers/auth";
 import { FoodItemProvider } from "@/providers/foodItem";
 import React from "react";
+import { ClientManagementProvider } from "@/providers/clientManagement";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <FoodItemProvider>
-          <body className={`${geistSans.variable} ${geistMono.variable}`}>
-            {children}
-          </body>
-        </FoodItemProvider>
+        <ClientManagementProvider>
+          <FoodItemProvider>
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+              {children}
+            </body>
+          </FoodItemProvider>
+        </ClientManagementProvider>
       </AuthProvider>
     </html>
   );
