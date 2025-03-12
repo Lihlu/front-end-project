@@ -23,7 +23,7 @@ const siderItems = [
   { key: "/trainer", icon: React.createElement(UserOutlined), label: "Profile" },
   { key: "/trainer/clients", icon: React.createElement(TeamOutlined), label: "Clients" },
   { key: "/trainer", icon: React.createElement(UserOutlined), label: "Meal Plans" },
-  { key: "/trainer", icon: React.createElement(UserOutlined), label: "Food Items" },
+  { key: "/trainer/foodItems", icon: React.createElement(UserOutlined), label: "Food Items" },
 ];
 
 const TrainerLayout: React.FC = ({
