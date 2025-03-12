@@ -48,7 +48,7 @@ const LandingPage: React.FC = () => {
                 Sign Up Now
               </Button>
             </Link>
-            <Link href="">
+            <Link href="/login">
               <Button type="primary" size="large" block>
                 Already have an account? Log In
               </Button>
