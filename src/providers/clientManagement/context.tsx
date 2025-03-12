@@ -16,6 +16,16 @@ export interface IInvoice {
   invoiceHistory: [];
 }
 
+export interface IClientInput {
+  fullName: string;
+  email: string;
+  contactNumber: string;
+  sex: string;
+  dateOfBirth?: string;
+  activeState: boolean;
+  trainerId: string;
+}
+
 export interface IClient {
   invoice: IInvoice; 
   preferences: IPreferences;
@@ -44,6 +54,7 @@ export interface IClientManagementStateContext{
 
 export interface IClientManagementActionContext{
     getClients: (token: string, trainerId: string) => void;
+    createClient: (token: string, input: IClientInput) => void;
 }
 
 export const INITIAL_STATE: IClientManagementStateContext = {
