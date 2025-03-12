@@ -38,7 +38,10 @@ const TrainerLayout: React.FC = ({
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const username = user.name;
+  let username = "";
+  if (user){
+    username = user.name;
+  }
 
   return (
     <Layout hasSider>
