@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, Segmented } from "antd";
 import { useAuthActions } from "@/providers/auth";
-import { IRegistrationData } from "@/providers/auth/context";
+import {
+  IClientRegistrationData,
+  IRegistrationData,
+} from "@/providers/auth/context";
 
 const RegistrationForm: React.FC = () => {
   const [value, setValue] = useState("Trainer");
-  const { registerTrainer } = useAuthActions();
+  const { registerTrainer, registerClient } = useAuthActions();
 
   const onFinish = (values) => {
     if (value === "Trainer") {
@@ -21,6 +24,14 @@ const RegistrationForm: React.FC = () => {
 
       console.log(registrationData);
       registerTrainer(registrationData);
+    } else {
+      const clientRegData: IClientRegistrationData = {
+        ...values,
+        role: "client",
+        dateOfBirth: "",
+      };
+
+      registerClient(clientRegData);
     }
   };
 
