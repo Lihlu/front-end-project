@@ -18,7 +18,15 @@ interface DataType {
 }
 
 const App: React.FC = () => {
-  const token: string = sessionStorage.getItem("token");
+    let token = "";
+    useEffect(() => {
+        if (typeof window !== "undefined"){
+
+            token = sessionStorage.getItem("token") ;
+        }
+
+    }, [])
+    
   const { user } = useAuthState();
   const { clients } = useClientManagementState();
   const { getClients } = useClientManagementActions();
