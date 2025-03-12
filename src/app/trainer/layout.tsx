@@ -24,6 +24,7 @@ const siderItems = [
   { key: "/trainer/clients", icon: React.createElement(TeamOutlined), label: "Clients" },
   { key: "/trainer", icon: React.createElement(UserOutlined), label: "Meal Plans" },
   { key: "/trainer/foodItems", icon: React.createElement(UserOutlined), label: "Food Items" },
+  { key: "/trainer/createItems", icon: React.createElement(UserOutlined), label: " Create Food Items" },
 ];
 
 const TrainerLayout: React.FC = ({
@@ -53,7 +54,7 @@ const TrainerLayout: React.FC = ({
           }}
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["4"]}
+          defaultSelectedKeys={["/trainer/clients"]}
           items={siderItems}
         />
       </Sider>
