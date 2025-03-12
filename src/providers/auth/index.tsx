@@ -36,17 +36,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       process.env.NEXT_PUBLIC_CURRENT_USER_ENDPOINT;
 
     try {
-      const response = await axios.post(loginEndpoint, loginData);
 
+      const response = await axios.post(loginEndpoint, loginData);
+    
       // Extracting JWT token from response
       const token: string = response.data.data.token;
+
+      sessionStorage.setItem("token", token);
 
       const userResponse = await axios.get(currentUserEndpoint, {
         headers: {
           Authorization: token,
         },
       });
-
       // Extracting user object from response
       const user: IUser = userResponse.data.data;
 
@@ -66,13 +68,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       const response = await axios.post(registerTrainerEndpoint, registrationData);
-      debugger;
-      console.log(response.data);
 
       dispatch(registerTrainerSuccess());
     } catch (error) {
-      debugger;
-      console.log(error.message);
+      console.error(error);
       dispatch(registerTrainerError());
     }
   };
@@ -87,8 +86,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       const response = await axios.post(registerClientEndpoint, clientRegistrationData);
-
-      console.log(response);
 
       dispatch(registerClientSuccess());
     } catch (error){
