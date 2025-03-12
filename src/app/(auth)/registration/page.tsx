@@ -101,7 +101,7 @@ const RegistrationForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item name="policiesAccepted" valuePropName="checked" label={null}>
-        <Checkbox>I accept MyGym's policies</Checkbox>
+        <Checkbox>I accept MyGym&apos;s policies</Checkbox>
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
