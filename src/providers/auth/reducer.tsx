@@ -18,33 +18,32 @@ export const AuthReducer = handleActions<IAuthStateContext, IAuthStateContext>(
     }),
 
     // Handling trainer registration actions
-    [AuthActionEnums.registerTrainerPending]: (state, action) =>({
+    [AuthActionEnums.registerTrainerPending]: (state, action) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
-    [AuthActionEnums.registerTrainerSuccess]: (state, action) =>({
+    [AuthActionEnums.registerTrainerSuccess]: (state, action) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
-    [AuthActionEnums.registerTrainerError]: (state, action) =>({
+    [AuthActionEnums.registerTrainerError]: (state, action) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
 
     // Handling client registration actions
-    [AuthActionEnums.registerClientPending]: (state, action) =>({
+    [AuthActionEnums.registerClientPending]: (state, action) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
-    [AuthActionEnums.registerClientSuccess]: (state, action) =>({
+    [AuthActionEnums.registerClientSuccess]: (state, action) => ({
       ...state,
-      ...action.payload
+      ...action.payload,
     }),
-    [AuthActionEnums.registerClientError]: (state, action) =>({
+    [AuthActionEnums.registerClientError]: (state, action) => ({
       ...state,
-      ...action.payload
-    })
-
+      ...action.payload,
+    }),
   },
   INITIAL_STATE
 );

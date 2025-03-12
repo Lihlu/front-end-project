@@ -29,7 +29,7 @@ const LoginForm: React.FC = () => {
   };
 
   if (isSuccess) {
-    router.push("/");
+    router.push("/trainer");
   }
 
   return (

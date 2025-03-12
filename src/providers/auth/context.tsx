@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 // Interface defining the shape of a User object
 export interface IUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   password: string;
