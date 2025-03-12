@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const currentUserEndpoint: string =
       process.env.NEXT_PUBLIC_CURRENT_USER_ENDPOINT;
 
+      
     try {
 
       const response = await axios.post(loginEndpoint, loginData);
@@ -42,7 +43,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       // Extracting JWT token from response
       const token: string = response.data.data.token;
 
-      sessionStorage.setItem("token", token);
+      if (typeof window !== "undefined"){
+
+        sessionStorage.setItem("token", token);
+      }
 
       const userResponse = await axios.get(currentUserEndpoint, {
         headers: {
@@ -67,7 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       process.env.NEXT_PUBLIC_REGISTER_TRAINER_ENDPOINT;
 
     try {
-      const response = await axios.post(registerTrainerEndpoint, registrationData);
+      await axios.post(registerTrainerEndpoint, registrationData);
 
       dispatch(registerTrainerSuccess());
     } catch (error) {
@@ -85,7 +89,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const registerClientEndpoint = process.env.NEXT_PUBLIC_REGISTER_CLIENT_ENDPOINT;
 
     try {
-      const response = await axios.post(registerClientEndpoint, clientRegistrationData);
+      await axios.post(registerClientEndpoint, clientRegistrationData);
 
       dispatch(registerClientSuccess());
     } catch (error){
