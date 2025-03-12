@@ -43,7 +43,7 @@ const LandingPage: React.FC = () => {
         </section>
         <section className={styles.buttonsSection}>
           <Space direction="vertical" size="large">
-            <Link href="">
+            <Link href="/registration">
               <Button type="primary" size="large" block>
                 Sign Up Now
               </Button>
