@@ -30,7 +30,7 @@ export default function RootLayout({
       <AuthProvider>
         <ClientManagementProvider>
           <FoodItemProvider>
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <body style={{padding: 0, margin: 0}}>
               {children}
             </body>
           </FoodItemProvider>
