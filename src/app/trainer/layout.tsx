@@ -7,7 +7,7 @@ import { useAuthState } from "@/providers/auth";
 import { useRouter } from "next/navigation";
 import { useStyles } from "./styles/style";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const siderStyle: React.CSSProperties = {
   overflow: "auto",
