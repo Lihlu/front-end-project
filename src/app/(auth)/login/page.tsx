@@ -6,6 +6,7 @@ import { ILoginData } from "@/providers/auth/context";
 import { useAuthActions, useAuthState } from "@/providers/auth";
 import { useRouter } from "next/navigation";
 import {useStyles} from "./styles/style";
+import React from "react";
 
 type FieldType = {
   email?: string;
@@ -13,7 +14,7 @@ type FieldType = {
 };
 
 const LoginForm: React.FC = () => {
-  const { isSuccess } = useAuthState();
+  const { isPending, isSuccess } = useAuthState();
   const { loginUser } = useAuthActions();
   const router = useRouter();
   const {user} = useAuthState();
@@ -25,12 +26,9 @@ const LoginForm: React.FC = () => {
     loginUser(values);
   };
 
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
-  ) => {
-    console.log("Failed:", errorInfo);
-  };
-
+  if (isPending){
+    return <div>Loading...</div>
+  }
   
   if (isSuccess) {
     if (user.role === "admin"){
@@ -50,7 +48,6 @@ const LoginForm: React.FC = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item<FieldType>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, Segmented } from "antd";
-import { useAuthActions } from "@/providers/auth";
+import { useAuthActions, useAuthState } from "@/providers/auth";
 import {
   IClientRegistrationData,
   IRegistrationData,
@@ -11,6 +11,7 @@ import {
 const RegistrationForm: React.FC = () => {
   const [value, setValue] = useState("Trainer");
   const { registerTrainer, registerClient } = useAuthActions();
+  const {isPending} = useAuthState();
 
   const onFinish = (values) => {
     if (value === "Trainer") {
@@ -22,7 +23,7 @@ const RegistrationForm: React.FC = () => {
         trial: false,
       };
 
-      console.log(registrationData);
+
       registerTrainer(registrationData);
     } else {
       const clientRegData: IClientRegistrationData = {
@@ -35,13 +36,14 @@ const RegistrationForm: React.FC = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
 
   const handleSegmentedChange = (value: string) => {
     setValue(value);
   };
+
+  if (isPending){
+    return <div>Loading...</div>
+  }
 
   return (
     <Form
@@ -51,7 +53,6 @@ const RegistrationForm: React.FC = () => {
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item label="Role:" name="role">
