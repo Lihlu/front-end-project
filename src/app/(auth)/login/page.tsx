@@ -5,6 +5,7 @@ import { Button, Form, Input } from "antd";
 import { ILoginData } from "@/providers/auth/context";
 import { useAuthActions, useAuthState } from "@/providers/auth";
 import { useRouter } from "next/navigation";
+import {useStyles} from "./styles/style";
 
 type FieldType = {
   email?: string;
@@ -16,6 +17,7 @@ const LoginForm: React.FC = () => {
   const { loginUser } = useAuthActions();
   const router = useRouter();
   const {user} = useAuthState();
+  const {styles} = useStyles();
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values: ILoginData) => {
     console.log("Success:", values);
@@ -38,10 +40,12 @@ const LoginForm: React.FC = () => {
     }
   }
 
-  return (
+  return (<div className={styles.landingContainer}>
+    <h1 className={styles.header}>Login</h1>
     <Form
       name="basic"
-      labelCol={{ span: 8 }}
+      className={styles.loginForm}
+      labelCol={{ span: 5 }}
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true }}
@@ -72,11 +76,11 @@ const LoginForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item label={null}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" className={styles.loginButton}>
           Login
         </Button>
       </Form.Item>
-    </Form>
+    </Form></div>
   );
 };
 export default LoginForm;
