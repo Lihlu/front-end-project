@@ -1,95 +1,63 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import React from "react";
+import Head from "next/head";
+import { Button, Space, Typography } from "antd";
+import Link from "next/link";
+import { useStyles } from "./style";
+
+const {Title, Text} = Typography;
+
+const LandingPage: React.FC = () => {
+  const {styles} = useStyles();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Head>
+        <title>Welcome to MyGym</title>
+        <meta name="despcription" content="Start your journey with us today." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <div className={styles.landingContainer}>
+        <header className={styles.header}>
+          <Title level={1}>Welcome to MyGym!</Title>
+          <Text>Start your journey with us today</Text>
+        </header>
+        <section className={styles.features}>
+          <div className={styles.trainerFeatures}>
+            <Title level={3}>For Trainers</Title>
+            <Text>
+              Create, manage, and customize your clients&apos; meal plans with ease.
+              You can also track food items and ensure your clients are
+              following the best nutrition plan tailored to their needs.
+            </Text>
+          </div>
+          <div className={styles.clientFeatures}>
+            <Title level={3}>For Clients</Title>
+            <Text>
+              View the meal plans created just for you by your trainer. Stay on
+              top of your goals and make healthier choices with your
+              personalised nutrition plan.
+            </Text>
+          </div>
+        </section>
+        <section className={styles.buttonsSection}>
+          <Space direction="vertical" size="large">
+            <Link href="/registration">
+              <Button className={styles.secondaryButton} type="primary" size="large" block>
+                Sign Up Now
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button type="primary" size="large" block>
+                Already have an account? Log In
+              </Button>
+            </Link>
+          </Space>
+        </section>
+      </div>
+    </>
   );
-}
+};
+
+export default LandingPage;
