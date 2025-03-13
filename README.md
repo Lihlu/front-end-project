@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyGym
 
-## Getting Started
+MyGym is a platform for personal trainers to manage their clients and meal plans, and for clients to view their assigned meal plans. This application is built with Next.js, React, and TypeScript and interacts with a backend API to provide various features for both trainers and clients.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Trainer Features
+- **Add New Clients**: Trainers can register new clients to the system.
+- **Create and Assign Meal Plans**: Trainers can create meal plans and assign them to specific clients.
+- **Create Food Items**: Trainers can create food items and add them to meal plans.
+- **View and Edit Clients, Meal Plans, and Food Items**: Trainers can view, edit, and manage clients, their meal plans, and food items.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Client Features
+- **View Assigned Meal Plans**: Clients can log in and view their assigned meal plans, with details on daily meals.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Authentication
+- **Trainer Registration/Login**: Trainers can register and log in to access their dashboard.
+- **Client Registration**: Clients can only register after being added by a trainer.
+- **Client Login**: Clients can log in to view their assigned meal plans.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+Make sure you have the following installed:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```From yout terminal, run:
+   git clone https://github.com/Lihlu/front-end-project.git
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Navigate into the project folder
+
+   ```From yout terminal, run:
+   cd front-end-project
+
+3. Install the dependencies
+
+   ```From yout terminal, run:
+   cd front-end-project
+
+
+### Running locally
+
+   ```From yout terminal, run:
+   npm run dev
