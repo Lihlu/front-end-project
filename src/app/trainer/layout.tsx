@@ -5,6 +5,7 @@ import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useAuthState } from "@/providers/auth";
 import { useRouter } from "next/navigation";
+import { useStyles } from "./styles/style";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -17,15 +18,40 @@ const siderStyle: React.CSSProperties = {
   bottom: 0,
   scrollbarWidth: "thin",
   scrollbarGutter: "stable",
+  color: "rgba(244, 208, 78, 0.7)",
 };
 
 const siderItems = [
-  { key: "/trainer", icon: React.createElement(UserOutlined), label: "Profile" },
-  { key: "/trainer/clients", icon: React.createElement(TeamOutlined), label: "Clients" },
-  { key: "/trainer/createClient", icon: React.createElement(TeamOutlined), label: "Create Client" },
-  { key: "/trainer", icon: React.createElement(UserOutlined), label: "Meal Plans" },
-  { key: "/trainer/foodItems", icon: React.createElement(UserOutlined), label: "Food Items" },
-  { key: "/trainer/createItems", icon: React.createElement(UserOutlined), label: " Create Food Items" },
+  {
+    key: "/trainer",
+    icon: React.createElement(UserOutlined),
+    label: "Profile",
+  },
+  {
+    key: "/trainer/clients",
+    icon: React.createElement(TeamOutlined),
+    label: "Clients",
+  },
+  {
+    key: "/trainer/createClient",
+    icon: React.createElement(TeamOutlined),
+    label: "Create Client",
+  },
+  {
+    key: "/trainer",
+    icon: React.createElement(UserOutlined),
+    label: "Meal Plans",
+  },
+  {
+    key: "/trainer/foodItems",
+    icon: React.createElement(UserOutlined),
+    label: "Food Items",
+  },
+  {
+    key: "/trainer/createItems",
+    icon: React.createElement(UserOutlined),
+    label: " Create Food Items",
+  },
 ];
 
 const TrainerLayout: React.FC = ({
@@ -35,13 +61,14 @@ const TrainerLayout: React.FC = ({
 }) => {
   const { user } = useAuthState();
   const router = useRouter();
+  const { styles } = useStyles();
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   let username = "";
-  if (user){
+  if (user) {
     username = user.name;
   }
 
@@ -60,9 +87,7 @@ const TrainerLayout: React.FC = ({
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          Hello, {username}
-        </Header>
+        <Header className={styles.headerStyle}>Hello, {username}</Header>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             style={{
@@ -75,9 +100,6 @@ const TrainerLayout: React.FC = ({
             {children}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );
