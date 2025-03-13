@@ -55,14 +55,11 @@ export const ClientManagementProvider = ({
     const createClientEndpoint = process.env.NEXT_PUBLIC_CREATE_CLIENT_ENDPOINT;
 
     try {
-      const response = await axios.post(createClientEndpoint, input, {
+      await axios.post(createClientEndpoint, input, {
         headers: {
           Authorization: token,
         },
       });
-
-      debugger;
-      console.log(response.data);
       createClientSuccess();
     } catch (error) {
       console.error(error);
